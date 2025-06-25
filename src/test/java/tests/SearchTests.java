@@ -38,4 +38,3 @@ public class SearchTests extends BaseTest {
     }
 }
 
-
