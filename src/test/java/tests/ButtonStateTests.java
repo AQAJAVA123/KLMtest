@@ -4,6 +4,7 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import utils.DateAndTime;
 
 public class ButtonStateTests extends BaseTest {
 
@@ -14,7 +15,7 @@ public class ButtonStateTests extends BaseTest {
         home.setFrom("Dublin");
         Assert.assertFalse(home.isSearchEnabled(), "Search button should still be disabled.");
         home.setTo("Amsterdam");
-        home.setDepartureDate("25-07-2025");
+        home.setDepartureDate(DateAndTime.fromString("25-07-2025"));
         Assert.assertTrue(home.isSearchEnabled(), "Search button should be enabled after filling all fields.");
     }
 }

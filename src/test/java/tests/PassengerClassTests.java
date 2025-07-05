@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import utils.DateAndTime;
 
 public class PassengerClassTests extends BaseTest {
 
@@ -22,7 +23,7 @@ public class PassengerClassTests extends BaseTest {
         HomePage home = new HomePage(driver);
         home.setFrom("Dublin");
         home.setTo("Amsterdam");
-        home.setDepartureDate("25-07-2025");
+        home.setDepartureDate(DateAndTime.fromString("25-07-2025"));
         home.setPassengers(passengers);
         home.setClass(cabinClass);
         home.clickSearch();

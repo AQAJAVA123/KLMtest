@@ -25,12 +25,7 @@ https://excel.cloud.microsoft/open/onedrive/?docId=8A9E040217163554%21s4b58fbfcd
 
 ## Как запустить тесты
 
-1. Убедитесь, что установлен:
-   - Java 11+
-   - Maven
-   - Браузер Google Chrome
-
-2. Клонируйте проект:
+1. Клонируйте проект:
 ```bash
 git clone https://github.com/your-username/klm-test.git
 cd klm-test

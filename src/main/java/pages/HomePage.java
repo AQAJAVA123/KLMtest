@@ -1,69 +1,70 @@
 package pages;
 
+import base.BasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import utils.DateAndTime;
 
-public class HomePage {
-    private WebDriver driver;
+public class HomePage extends BasePage {
 
-    @FindBy(id = "mat-input-server-app5")
-    WebElement fromInput;
+    @FindBy(xpath = "//input[@data-test='bws-station-list__input' and @data-test-value='origin']")
+    private WebElement originInput;
 
-    @FindBy(id = "mat-input-server-app6")
-    WebElement toInput;
+    @FindBy(xpath = "//input[@data-test='bws-station-list__input' and @data-test-value='destination']")
+    private WebElement destinationInput;
 
     @FindBy(id = "date-picker-outbound-date")
-    WebElement departureDateInput;
+    private WebElement departureDateInput;
 
-    @FindBy(id = "mat-input-server-app0")
-    WebElement oneWayCheckbox;
+    @FindBy(xpath = "//select[@formcontrolname='tripKind']")
+    private WebElement tripTypeSelector;
 
     @FindBy(xpath = "//button[.//span[normalize-space()='Search flights']]")
-    WebElement searchButton;
+    private WebElement searchButton;
 
     @FindBy(css = "#flight-search-error")
-    WebElement errorMessage;
+    private WebElement errorMessage;
 
     @FindBy(id = "mat-input-server-app8")
-    WebElement passengersInput;
+    private WebElement passengersInput;
 
     @FindBy(id = "mat-input-server-app9")
-    WebElement classInput;
+    private WebElement travelClassInput;
 
     public HomePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
-    public void setFrom(String from) {
-        fromInput.clear();
-        fromInput.sendKeys(from);
+    public void setOrigin(String from) {
+        originInput.clear();
+        originInput.sendKeys(from);
     }
 
-    public void setTo(String to) {
-        toInput.clear();
-        toInput.sendKeys(to);
+    public void setDestination(String to) {
+        destinationInput.clear();
+        destinationInput.sendKeys(to);
     }
 
-    public void setDepartureDate(String date) {
+    public void setDepartureDate(DateAndTime date) {
         departureDateInput.clear();
-        departureDateInput.sendKeys(date);
+        departureDateInput.sendKeys(date.getFormatted());
         departureDateInput.sendKeys(Keys.ENTER);
     }
 
-    public void toggleOneWay(boolean on) {
-        if (oneWayCheckbox.isSelected() != on) {
-            oneWayCheckbox.click();
-        }
+    public void selectTripType(String type) {
+        Select tripType = new Select(tripTypeSelector);
+        tripType.selectByValue(type);
     }
 
     public void setPassengers(String value) {
+        passengersInput.clear();
         passengersInput.sendKeys(value);
     }
 
-    public void setClass(String value) {
-        classInput.sendKeys(value);
+    public void setTravelClass(String value) {
+        travelClassInput.clear();
+        travelClassInput.sendKeys(value);
     }
 
     public void clickSearch() {
