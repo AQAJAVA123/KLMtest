@@ -21,11 +21,11 @@ public class PassengerClassTests extends BaseTest {
     @Test(dataProvider = "pairwiseData")
     public void testPassengerAndClassCombinations_TC008(String passengers, String cabinClass) {
         HomePage home = new HomePage(driver);
-        home.setFrom("Dublin");
-        home.setTo("Amsterdam");
-        home.setDepartureDate(DateAndTime.fromString("25-07-2025"));
+        home.setOrigin("Dublin");
+        home.setDestination("Amsterdam");
+        home.selectDate(DateAndTime.fromString("25-08-2025"));
         home.setPassengers(passengers);
-        home.setClass(cabinClass);
+        home.setTravelClass(cabinClass);
         home.clickSearch();
         Assert.assertTrue(driver.getCurrentUrl().contains("search"), "Search with passengers + class failed.");
     }

@@ -11,11 +11,12 @@ public class ButtonStateTests extends BaseTest {
     @Test
     public void testSearchButtonState_TC005() {
         HomePage home = new HomePage(driver);
-        Assert.assertFalse(home.isSearchEnabled(), "Search button should be disabled initially.");
-        home.setFrom("Dublin");
-        Assert.assertFalse(home.isSearchEnabled(), "Search button should still be disabled.");
-        home.setTo("Amsterdam");
-        home.setDepartureDate(DateAndTime.fromString("25-07-2025"));
-        Assert.assertTrue(home.isSearchEnabled(), "Search button should be enabled after filling all fields.");
+        Assert.assertFalse(home.isSearchEnabled());
+        home.setOrigin("Dublin");
+        Assert.assertFalse(home.isSearchEnabled());
+        home.setDestination("Amsterdam");
+        DateAndTime departureDate = DateAndTime.fromString("25-08-2025");
+        home.selectDate(departureDate);
+        Assert.assertTrue(home.isSearchEnabled());
     }
 }
