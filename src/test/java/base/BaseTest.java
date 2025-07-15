@@ -23,7 +23,7 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.get("https://www.klm.ie/");
 
-        closeCookieBannerIfPresent();  // 👈 Закрываем куки-баннер
+        closeCookieBannerIfPresent();
     }
 
     @AfterMethod
@@ -41,7 +41,7 @@ public class BaseTest {
             ));
             acceptButton.click();
         } catch (TimeoutException | NoSuchElementException ignored) {
-            // Баннер не появился — игнорируем
+
         }
     }
 }
